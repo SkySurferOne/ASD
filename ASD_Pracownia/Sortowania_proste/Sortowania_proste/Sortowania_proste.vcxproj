@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0B8A113E-65B6-4604-B72D-0CD1EA37B527}</ProjectGuid>
+    <ProjectGuid>{A6F10897-1CCF-45BC-A955-5888E1DC999A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Sortowania_proste</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
