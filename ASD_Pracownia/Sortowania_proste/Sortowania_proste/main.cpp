@@ -120,7 +120,6 @@ void clearList(node * head) {
 	}
 }
 
->>>>>>> f94e2fff10cb33bd5957389564f1ff160bb91740
 int main() {
 	srand(time(NULL));
 	int n;
@@ -130,8 +129,6 @@ int main() {
 	show(tab, n);
 	bsort(tab, n);
 	show(tab, n);
-<<<<<<< HEAD
-=======
 
 	// sortowania na listach
 	int * tab2 = r(n);
@@ -148,6 +145,5 @@ int main() {
 	showList(head);
 
 	system("pause");
->>>>>>> f94e2fff10cb33bd5957389564f1ff160bb91740
 	return 0;
 }
