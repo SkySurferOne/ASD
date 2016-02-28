@@ -130,7 +130,7 @@ int main() {
 	bsort(tab, n);
 	show(tab, n);
 
-	// soratowania na listach
+	// sortowania na listach
 	int * tab2 = r(n);
 	node * head;
 	init(head);
