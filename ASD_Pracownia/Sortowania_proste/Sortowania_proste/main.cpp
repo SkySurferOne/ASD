@@ -33,6 +33,19 @@ void bsort(int t[], int n) {
 	}
 }
 
+void isortTab(int A[], int n) {
+	for (int j = 1; j < n; j++) {
+		int key = A[j];
+		int i = j - 1;
+		while (i >= 0 && A[i]>key) {
+			A[i + 1] = A[i];
+			i--;
+		}
+		A[i + 1] = key;
+	}
+}
+
+// dla list
 struct node {
 	int key;
 	node * next;
@@ -130,17 +143,22 @@ int main() {
 	bsort(tab, n);
 	show(tab, n);
 
-	// sortowania na listach
 	int * tab2 = r(n);
+	show(tab2, n);
+	bsort(tab2, n);
+	show(tab2, n);
+
+	// sortowania na listach
+	int * tab3 = r(n);
 	node * head;
 	init(head);
-	fillList(head, tab2, n);
+	fillList(head, tab3, n);
 	showList(head);
 	head = isort(head);
 	showList(head);
 
 	clearList(head);
-	fillList(head, tab2, n);
+	fillList(head, tab3, n);
 	head = ssort(head);
 	showList(head);
 
