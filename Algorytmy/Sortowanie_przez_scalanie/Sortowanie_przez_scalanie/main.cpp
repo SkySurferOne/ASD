@@ -43,6 +43,7 @@ void showList(node * head) {
 	cout << endl;
 }
 
+// na wskaŸnikach
 node * merge(node * l1, node * l2) {
 	node * l3, *t3;
 	l3 = t3 = new node;
@@ -96,14 +97,14 @@ node * mid(node * l1) {
 	return c;
 }
 
-node * ssort(node * l1) {
+node * msort(node * l1) {
 	if (l1 == NULL || l1->next == NULL) return l1;
 	node * tmp = mid(l1);
 	node * l2 = tmp->next;
 	tmp->next = NULL;
 
-	node * l3 = ssort(l1);
-	node * l4 = ssort(l2);
+	node * l3 = msort(l1);
+	node * l4 = msort(l2);
 
 	return merge(l3, l4);
 }
@@ -115,14 +116,53 @@ void init(node * &list, int n) {
 	showList(list);
 }
 
+// na tablicach
+void mergeTab(int tab[], int l1, int m, int r2, int N) {
+	int p = l1;
+	int * T2 = new int[N];
+	int r1 = m;
+	int l2 = m + 1;
+	int  i = l1;
+	while (l1 <= r1 && l2 <= r2) {
+		if (tab[l1] < tab[l2]) {
+			T2[i] = tab[l1++];
+		} else {
+			T2[i] = tab[l2++];
+		}
+		i++;
+	}
+
+	while (l1 <= r1)
+			T2[i++] = tab[l1++];
+	while (l2 <= r2)
+			T2[i++] = tab[l2++];
+	for (i = p; i <= r2; i++)
+		tab[i] = T2[i];
+}
+
+void msortTab(int tab[], int l, int r, int n) {
+	if (l < r) {
+		int m = (l + r) / 2;
+	    msortTab(tab, l, m, n);
+		msortTab(tab, m + 1, r, n);
+		mergeTab(tab, l, m, r, n);
+	}
+}
+
 int main() {
 	int n;
 	node * list;
 	cout << "Podaj n: ";
 	cin >> n;
 	init(list, n);
-	list = ssort(list);
+	list = msort(list);
 	showList(list);
+
+	//
+	int * tab = r(n);
+	show(tab, n);
+	msortTab(tab, 0, n - 1, n);
+	show(tab, n);
 
 	system("pause");
 	return 0;
