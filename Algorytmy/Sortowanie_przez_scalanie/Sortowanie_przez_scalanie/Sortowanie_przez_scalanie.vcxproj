@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{17E0F564-CF62-4138-8E92-01F6B322353B}</ProjectGuid>
+    <ProjectGuid>{6E3CE564-EC73-4838-8833-5FB7A3845198}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>minmax</RootNamespace>
+    <RootNamespace>Sortowanie_przez_scalanie</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
