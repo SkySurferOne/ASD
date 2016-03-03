@@ -1,5 +1,20 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
+
+int * r(int n) {
+	int * t = new int[n];
+	for (int i = 0; i<n; i++)
+		t[i] = rand() % 50;
+	return t;
+}
+
+void show(int tab[], int n) {
+	for (int i = 0; i < n; i++)
+		cout << tab[i] << " ";
+	cout << endl;
+}
 
 void przywroc(int T[], int k, int n) {
 	int i, j;
@@ -31,16 +46,51 @@ void heapsort(int T[], int n) {
 	} while (n > 1);
 }
 
-int main() {
-	int i, T[14] = { 12, 3, -12, 9, 34, 23, 1, 82, 45, 17, 9, 23, 11, 4 };
-	for (i = 0; i < 14; i++)
-		cout << " " << T[i];
-	cout << endl;
-	heapsort(T, 14);
+// coremen style
+void heapify(int A[], int i, int hs){
+	int l = 2 * i + 1;
+	int r = 2 * i + 2;
+	int largest = 0;
+	if (l < hs && A[l] > A[i])
+		largest = l;
+	else
+		largest = i;
+	if (r < hs && A[r] > A[largest])
+		largest = r;
+	if (largest != i) {
+		swap(A[i], A[largest]);
+		heapify(A, largest, hs);
+	}
+}
 
-	for (i = 0; i < 14; i++)
-		cout << " " << T[i];
-	cout << endl;
+void build_heap(int A[], int n) {
+	for (int i = n / 2; i >= 0; i--)
+		heapify(A, i, n);
+}
+
+void heapsort_c(int A[], int n) {
+	build_heap(A, n);
+	int hs = n;
+	for (int i = n-1; i >= 1; i--) {
+		swap(A[0], A[i]);
+		hs--;
+		heapify(A, 0, hs);
+	}
+}
+
+int main() {
+	srand(time(NULL));
+	int n;
+	cin >> n;
+	int * T = r(n);
+	show(T, n);
+	heapsort(T, n);
+	show(T, n);
+
+	int * T2 = r(n);
+	show(T2, n);
+	heapsort_c(T2, n);
+	show(T2, n);
 
 	system("pause");
 	return 0;
