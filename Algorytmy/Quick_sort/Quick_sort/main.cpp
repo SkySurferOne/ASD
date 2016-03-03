@@ -35,12 +35,44 @@ void quicksort(int d[], int l, int r) {
 	if (j + 1 < r) quicksort(d, j + 1, r);
 }
 
+// Cormen
+int partition(int A[], int p, int r) {
+	int x = A[p];
+	int i = p - 1;
+	int j = r + 1;
+	while (true) {
+		do j--;
+		while (A[j] > x);
+		do i++;
+		while (A[i] < x);
+		if (i < j)
+			swap(A[i], A[j]);
+		else
+			return j;
+	}
+}
+
+int partition_rand(int A[], int p, int r) {
+	int q = (rand() % (r - p + 1)) + p;
+	swap(A[p], A[q]);
+	return partition(A, p, r);
+}
+
+void quicksort_corm(int A[], int p, int r) {
+	if (p < r) {
+		int q = partition_rand(A, p, r);
+		quicksort_corm(A, p, q);
+		quicksort_corm(A, q + 1, r);
+	}
+}
+
 int main() {
+	srand(time(NULL));
 	int n;
 	cin >> n;
 	int * tab = r(n);
 	show(tab, n);
-	quicksort(tab, 0, n - 1);
+	quicksort_corm(tab, 0, n - 1);
 	show(tab, n);
 
 	system("pause");
