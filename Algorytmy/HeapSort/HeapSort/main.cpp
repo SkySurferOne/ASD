@@ -47,10 +47,16 @@ void heapsort(int T[], int n) {
 }
 
 // cormen style
-void heapify(int A[], int i, int hs){
-	int l = 2 * i + 1;
-	int r = 2 * i + 2;
+int left(int i) { return 2 * i + 1; }
+int right(int i) { return 2 * i + 2; }
+int parent(int i) { return (i - 1) / 2; }
+
+// naprawia kopiec o rozm. hs od wierzcho³ka i
+void heapify(int A[], int i, int hs) {
+	int l = left(i);
+	int r = right(i);
 	int largest = 0;
+
 	if (l < hs && A[l] > A[i])
 		largest = l;
 	else
@@ -63,24 +69,25 @@ void heapify(int A[], int i, int hs){
 	}
 }
 
+// formuje kopiec
 void build_heap(int A[], int n) {
 	for (int i = n / 2; i >= 0; i--)
 		heapify(A, i, n);
 }
 
+// funkcja sortuj¹ca
 void heapsort_c(int A[], int n) {
 	build_heap(A, n);
-	int hs = n;
 	for (int i = n-1; i >= 1; i--) {
 		swap(A[0], A[i]);
-		hs--;
-		heapify(A, 0, hs);
+		heapify(A, 0, i);
 	}
 }
 
 int main() {
 	srand(time(NULL));
 	int n;
+	cout << "Podaj n: ";
 	cin >> n;
 	int * T = r(n);
 	show(T, n);
