@@ -66,14 +66,44 @@ void quicksort_corm(int A[], int p, int r) {
 	}
 }
 
+// Z wyk³adów 
+int partition2(int A[], int p, int r) {
+	int x = A[r];
+	int i = p - 1;
+	int j;
+	for (j = p; j < r; j++) {
+		if (A[j] <= x) {
+			i++;
+			swap(A[i], A[j]);
+		}
+	}
+	swap(A[r], A[i + 1]);
+	return i + 1;
+}
+
+void quicksort_wykl(int A[], int p, int r) {
+	if (p < r) {
+		int q = partition2(A, p, r);
+		quicksort_wykl(A, p, q - 1);
+		quicksort_wykl(A, q + 1, r);
+	}
+}
+
 int main() {
 	srand(time(NULL));
 	int n;
+	cout << "Podaj n: ";
 	cin >> n;
 	int * tab = r(n);
 	show(tab, n);
 	quicksort_corm(tab, 0, n - 1);
 	show(tab, n);
+
+	cout << endl;
+	int * tab2 = r(n);
+	show(tab2, n);
+	quicksort_wykl(tab2, 0, n - 1);
+	show(tab2, n);
 
 	system("pause");
 	return 0;
