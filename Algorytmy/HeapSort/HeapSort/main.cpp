@@ -46,7 +46,7 @@ void heapsort(int T[], int n) {
 	} while (n > 1);
 }
 
-// coremen style
+// cormen style
 void heapify(int A[], int i, int hs){
 	int l = 2 * i + 1;
 	int r = 2 * i + 2;
