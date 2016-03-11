@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <stack>
 using namespace std;
 
 int * r(int n) {
@@ -35,7 +36,10 @@ void quicksort(int d[], int l, int r) {
 	if (j + 1 < r) quicksort(d, j + 1, r);
 }
 
+// =============================================
 // Cormen
+
+// wersja oryginalna alg. podzia³u
 int partition(int A[], int p, int r) {
 	int x = A[p];
 	int i = p - 1;
@@ -52,6 +56,7 @@ int partition(int A[], int p, int r) {
 	}
 }
 
+// losuje pivot
 int partition_rand(int A[], int p, int r) {
 	int q = (rand() % (r - p + 1)) + p;
 	swap(A[p], A[q]);
@@ -66,7 +71,10 @@ void quicksort_corm(int A[], int p, int r) {
 	}
 }
 
+// =============================================
 // Z wyk³adów 
+
+// alg. Hoare'a
 int partition2(int A[], int p, int r) {
 	int x = A[r];
 	int i = p - 1;
@@ -89,6 +97,31 @@ void quicksort_wykl(int A[], int p, int r) {
 	}
 }
 
+// =============================================
+// derekursywacja qs (z æwiczeñ)
+void qsort_stack(int tab[], int N) {
+	stack < int > Q;
+	Q.push(0);
+	Q.push(N - 1);
+	while (!Q.empty()) {
+		int r = Q.top(); Q.pop();
+		int l = Q.top(); Q.pop();
+		int i = partition(tab, l, r);
+		if (l < i) {
+			Q.push(l);
+			Q.push(i);
+		}
+		if (i + 1 < r) {
+			Q.push(i + 1);
+			Q.push(r);
+		}
+	}
+}
+
+// TODO
+// Jak zmodyfikowaæ qs aby jego z³o¿onoœæ nidy nie sta³a siê O(n^2)
+// bez uzycia funkcji random?
+
 int main() {
 	srand(time(NULL));
 	int n;
@@ -99,11 +132,19 @@ int main() {
 	quicksort_corm(tab, 0, n - 1);
 	show(tab, n);
 
+	//
 	cout << endl;
 	int * tab2 = r(n);
 	show(tab2, n);
 	quicksort_wykl(tab2, 0, n - 1);
 	show(tab2, n);
+
+	//
+	cout << endl;
+	int * tab3 = r(n);
+	show(tab3, n);
+	qsort_stack(tab3, n);
+	show(tab3, n);
 
 	system("pause");
 	return 0;
