@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include "msort_bidirlist.h"
 using namespace std;
 
 struct node {
