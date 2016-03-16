@@ -108,18 +108,3 @@ void msort_bidirlist(node2 * &head) {
 
 	delete l;
 }
-
-/*
-node2 a1, a2, a3, b1, b2;
-// key, next, prev
-node2 a1 = { 1, &a2, NULL };
-node2 a2 = { 2, &a3, &a1 };
-node2 a3 = { 3, NULL, &a2 };
-
-node2 b1 = { 2, &b2, NULL };
-node2 b2 = { 4, NULL, &b1 };
-
-node2 * appendTo = new node2;
-appendTo->next = appendTo->prev = NULL;
-*/
-

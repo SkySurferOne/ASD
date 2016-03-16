@@ -279,10 +279,12 @@ int main() {
 
 	node2 * l = &a1;
 	node2 * t = &b3;
+	cout << "msort on bidir list list" << endl;
 	showbidir(l);
 	showbidir(t, 1);
 
 	msort_bidirlist(l);
+	cout << "sorted" << endl;
 	showbidir(l);
 	showbidir(getlast(l), 1);
 
