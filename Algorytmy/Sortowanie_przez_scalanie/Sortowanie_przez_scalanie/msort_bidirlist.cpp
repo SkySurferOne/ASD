@@ -65,6 +65,7 @@ node2 * merge_series2(node2 * &s1, node2 * &s2, node2 * appendTo) {
 };
 
 /*
+
 node2 a1, a2, a3, b1, b2;
 // key, next, prev
 node2 a1 = { 1, &a2, NULL };

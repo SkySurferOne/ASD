@@ -21,4 +21,5 @@ void nserie2(node2 * head, node2 * s);
 void merge_series2(node2 * s1, node2 * s2, node2 * appendTo);
 void msort_bidirlist(node2 * head);
 
+
 #endif
