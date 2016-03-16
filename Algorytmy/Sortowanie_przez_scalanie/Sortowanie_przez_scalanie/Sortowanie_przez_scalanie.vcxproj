@@ -150,7 +150,7 @@
     <ClCompile Include="msort_bidirlist.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="msort_bidirlist.h" />
+    <ClInclude Include="msort_bidirlist.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include "msort_bidirlist.h"
+#include "msort_bidirlist.hpp"
 using namespace std;
 
 struct node {
@@ -264,6 +264,30 @@ int main() {
 	show(tab, n);
 	msortTab(tab, 0, n - 1, n);
 	show(tab, n);
+
+	/*
+	====================================================
+	*/
+	node2 a1, a2, a3, b1, b2;
+	// key, next, prev
+	a1 = { 1, &a2, NULL };
+	a2 = { 2, &a3, &a1 };
+	a3 = { 3, NULL, &a2 };
+
+	b1 = { 2, &b2, NULL };
+	b2 = { 4, NULL, &b1 };
+
+	node2 * appendTo = new node2;
+	appendTo->next = appendTo->prev = NULL;
+	
+	node2 * aa = &a1;
+	node2 * aa_t = &a3;
+	node2 * bb = &b1;
+	//
+
+	node2 * t = merge_series2(aa, bb, appendTo);
+	showbidir(t);
+	showbidir(t, 1);
 
 	system("pause");
 	return 0;

@@ -1,5 +1,18 @@
 #include <iostream>
-#include "msort_bidirlist.h"
+#include "msort_bidirlist.hpp"
+using namespace std;
+
+void showbidir(node2 * l, int dir) {
+	while (dir == 0 && l != NULL) {
+		cout << l->key << "->";
+		l = l->next;
+	}
+	while (dir == 1 && l != NULL) {
+		cout << l->key << "->";
+		l = l->prev;
+	}
+	cout << endl;
+}
 
 /* 
  * head jest wskaŸnikiem napierwszy el. listy 2 kier, s mo¿e byæ nullem
@@ -28,7 +41,7 @@ node2 * merge_series2(node2 * &s1, node2 * &s2, node2 * appendTo) {
 		if (s1->key <= s2->key) {
 			node2 * tmp = s1;
 			s1 = s1->next; 
-			s1->prev = NULL;
+			if(s1 != NULL) s1->prev = NULL;
 			tmp->next = NULL;
 			tmp->prev = end;
 			end->next = tmp;
@@ -37,7 +50,7 @@ node2 * merge_series2(node2 * &s1, node2 * &s2, node2 * appendTo) {
 		} else {
 			node2 * tmp = s2;
 			s2 = s2->next;
-			s2->prev = NULL;
+			if (s2 != NULL) s2->prev = NULL;
 			tmp->next = NULL;
 			tmp->prev = end;
 			end->next = tmp;
@@ -62,7 +75,11 @@ node2 * merge_series2(node2 * &s1, node2 * &s2, node2 * appendTo) {
 
 	return end;
 
-};
+}
+
+void msort_bidirlist(node2 * head) {
+}
+
 
 /*
 
@@ -78,3 +95,4 @@ node2 b2 = { 4, NULL, &b1 };
 node2 * appendTo = new node2;
 appendTo->next = appendTo->prev = NULL;
 */
+

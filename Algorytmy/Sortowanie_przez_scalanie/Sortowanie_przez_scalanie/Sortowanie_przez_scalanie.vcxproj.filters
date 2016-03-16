@@ -23,7 +23,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="msort_bidirlist.h">
+    <ClInclude Include="msort_bidirlist.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
