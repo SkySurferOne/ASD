@@ -2,6 +2,12 @@
 #include "msort_bidirlist.hpp"
 using namespace std;
 
+node2 * getlast(node2 * l) {
+	while (l != NULL && l->next != NULL)
+		l = l->next;
+	return l;
+}
+
 void showbidir(node2 * l, int dir) {
 	while (dir == 0 && l != NULL) {
 		cout << l->key << "->";
@@ -25,17 +31,11 @@ void nserie2(node2 * &head, node2 * &s) {
 	s = head;
 	head = tmp->next;
 	tmp->next = NULL;
-	head->prev = NULL;
+	if(head != NULL) head->prev = NULL;
 };
-
-void fixempty(node2 * &l) {
-	l = new node2;
-	l->next = l->prev = NULL;
-}
 
 // appendTo musi mieæ wartownika
 node2 * merge_series2(node2 * &s1, node2 * &s2, node2 * appendTo) {
-	//if (appendTo == NULL) fixempty(appendTo);
 	node2 * end = appendTo;
 	while (s1 != NULL && s2 != NULL) {
 		if (s1->key <= s2->key) {
@@ -77,12 +77,39 @@ node2 * merge_series2(node2 * &s1, node2 * &s2, node2 * appendTo) {
 
 }
 
-void msort_bidirlist(node2 * head) {
+void msort_bidirlist(node2 * &head) {
+	node2 * s1 = NULL;
+	node2 * s2 = NULL;
+	node2 * l = new node2;
+	l->next = l->prev = NULL;
+	node2 * end = l;
+
+	int n;
+	do {
+		n = 0;
+		while (head != NULL) {
+			nserie2(head, s1);
+			n++;
+			if (head != NULL) {
+				nserie2(head, s2);
+				n++;
+				end = merge_series2(s1, s2, end);
+			}
+			else {
+				end->next = s1;
+				s1->prev = end;
+			}
+		}
+		head = l->next;
+		head->prev = NULL;
+		l->next = NULL;
+		end = l;
+	} while (n > 2);
+
+	delete l;
 }
 
-
 /*
-
 node2 a1, a2, a3, b1, b2;
 // key, next, prev
 node2 a1 = { 1, &a2, NULL };

@@ -266,28 +266,25 @@ int main() {
 	show(tab, n);
 
 	/*
-	====================================================
+		test - msort na listach dwukierunkowych
 	*/
-	node2 a1, a2, a3, b1, b2;
+	node2 a1, a2, a3, b1, b2, b3;
 	// key, next, prev
-	a1 = { 1, &a2, NULL };
-	a2 = { 2, &a3, &a1 };
-	a3 = { 3, NULL, &a2 };
+	a1 = { 2, &a2, NULL };
+	a2 = { 4, &a3, &a1 };
+	a3 = { 1, &b1, &a2 };
+	b1 = { 9, &b2, &a3 };
+	b2 = { 3, &b3, &b1 };
+	b3 = { 6, NULL, &b2 };
 
-	b1 = { 2, &b2, NULL };
-	b2 = { 4, NULL, &b1 };
-
-	node2 * appendTo = new node2;
-	appendTo->next = appendTo->prev = NULL;
-	
-	node2 * aa = &a1;
-	node2 * aa_t = &a3;
-	node2 * bb = &b1;
-	//
-
-	node2 * t = merge_series2(aa, bb, appendTo);
-	showbidir(t);
+	node2 * l = &a1;
+	node2 * t = &b3;
+	showbidir(l);
 	showbidir(t, 1);
+
+	msort_bidirlist(l);
+	showbidir(l);
+	showbidir(getlast(l), 1);
 
 	system("pause");
 	return 0;
