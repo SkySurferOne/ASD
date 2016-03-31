@@ -8,6 +8,7 @@ struct BSTNode {
 	int key;
 };
 
+// wyœwietla drzewo (niemalej¹co wg wartoœci key)
 void inorder(BSTNode * v) {
 	if (v != NULL) {
 		inorder(v->left);
@@ -16,6 +17,7 @@ void inorder(BSTNode * v) {
 	}
 }
 
+// dodaje wêze³ do drzewa
 bool addNode(BSTNode * &tree, int key) {
 	if (tree == NULL) {
 		tree = new BSTNode;
@@ -23,6 +25,7 @@ bool addNode(BSTNode * &tree, int key) {
 		tree->key = key;
 		tree->left = NULL;
 		tree->right = NULL;
+		tree->up = NULL;
 		return true;
 	} else {
 		bool run = true;
@@ -43,6 +46,7 @@ bool addNode(BSTNode * &tree, int key) {
 		BSTNode * tmp = new BSTNode;
 		if (tmp == NULL) return false;
 		tmp->key = key;
+		tmp->up = cp;
 		tmp->left = tmp->right = NULL;
 		if (key <= cp->key)
 			cp->left = tmp;
@@ -52,6 +56,7 @@ bool addNode(BSTNode * &tree, int key) {
 	}
 }
 
+// zwraca wêze³ o kluczu key (o ile istnieje)
 BSTNode * isNode(BSTNode * v, int key) {
 	while (v != NULL && key != v->key) {
 		if (key < v->key) 
@@ -60,6 +65,55 @@ BSTNode * isNode(BSTNode * v, int key) {
 				v = v->right;
 	}
 	return v;
+}
+
+// jw tylko rekurencyjnie
+BSTNode * find(BSTNode * root, int key) {
+	if (root == NULL) return NULL;
+	if (root->key == key) return root;
+	else if (key < root->key)
+		return find(root->left, key);
+	else return find(root->right, key);
+}
+
+// zwraca min w drzewie
+BSTNode * treeMin(BSTNode * root) {
+	while (root->left != NULL)
+		root = root->left;
+	return root;
+}
+
+// zwraca max w drzewie
+BSTNode * treeMax(BSTNode * root) {
+	while (root->right != NULL)
+		root = root->right;
+	return root;
+}
+
+// zwraca nastêpnika
+BSTNode * treeSuccessor(BSTNode * v) {
+	if (v->right != NULL)
+		return treeMin(v->right);
+
+	BSTNode * y = v->up;
+	while (y != NULL && v == y->right) {
+		v = y;
+		y = y->up;
+	}
+	return y;
+}
+
+// zwraca poprzednika
+BSTNode * treePredecessor(BSTNode * v) {
+	if (v->left != NULL)
+		return treeMax(v->left);
+
+	BSTNode * y = v->up;
+	while (y != NULL && v == y->left) {
+		v = y;
+		y = y->up;
+	}
+	return y;
 }
 
 int main() {
@@ -75,11 +129,10 @@ int main() {
 
 	inorder(tree);
 	cout << endl;
-	cout << isNode(tree, 1)->key << endl;
-	cout << isNode(tree, 8)->key << endl;
-	cout << isNode(tree, 11)->key << endl;
-	cout << isNode(tree, 55) << endl;
-	cout << isNode(tree, -1) << endl;
+	cout << treePredecessor(isNode(tree, 11))->key << endl;
+
+
+
 	system("pause");
 	return 0;
 }
