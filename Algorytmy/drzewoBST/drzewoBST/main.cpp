@@ -116,6 +116,35 @@ BSTNode * treePredecessor(BSTNode * v) {
 	return y;
 }
 
+// usuwa wêze³ poczym go zwraca
+BSTNode * deleteNode(BSTNode * root, BSTNode * z) {
+	BSTNode * y, * x;
+	if (z->left == NULL || z->right == NULL)
+		y = z;
+	else
+		y = treeSuccessor(z);
+	
+	if (y->left != NULL)
+		x = y->left;
+	else 
+		x = y->right;
+
+	if (x != NULL) 
+		x->up = y->up;
+
+	if (y->up == NULL)
+		root = x;
+	else if (y == y->up->left)
+		y->up->left = x;
+	else
+		y->up->right = x;
+
+	if (y != z)
+		z->key = y->key;
+
+	return y;
+}
+
 int main() {
 	BSTNode * tree = NULL;
 	addNode(tree, 8);
@@ -129,9 +158,10 @@ int main() {
 
 	inorder(tree);
 	cout << endl;
-	cout << treePredecessor(isNode(tree, 11))->key << endl;
-
-
+	BSTNode * d = treePredecessor(isNode(tree, 11));
+	deleteNode(tree, d);
+	inorder(tree);
+	cout << endl;
 
 	system("pause");
 	return 0;
