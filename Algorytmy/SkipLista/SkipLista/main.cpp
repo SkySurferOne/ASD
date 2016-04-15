@@ -55,7 +55,7 @@ int insert(SkipList * skip, int key) {
 	SLNode * it = skip->head;
 	SLNode * item = newNode(key);
 	SLNode * fix[MAX_H];
-	memset(fix, NULL, sizeof(SLNode*) * (MAX_H + 1));
+	memset(fix, NULL, sizeof(SLNode*) * (MAX_H));
 
 	for (int i = skip->height - 1; i >= 0; i--) {
 		while (it->next[i] != NULL && key > it->next[i]->val)
@@ -74,7 +74,6 @@ int insert(SkipList * skip, int key) {
 
 			skip->height = item->height;
 		}
-		cout << skip->height << endl;
 
 		for (int i = 0; i < item->height; i++) {
 			item->next[i] = fix[i]->next[i];
@@ -82,7 +81,6 @@ int insert(SkipList * skip, int key) {
 		}
 	}
 
-	//delete[] * fix;
 	return 1;
 }
 
@@ -104,11 +102,14 @@ int main() {
 	srand(time(NULL));
 	SkipList * skip = new SkipList;
     init(skip);
-	cout << skip->height << endl;
 	insert(skip, 11);
-	/*insert(skip, 22);
+	insert(skip, 22);
 	insert(skip, 33);
-	insert(skip, 9);*/
+	insert(skip, 9);
+
+	cout << find(skip,11) << endl;
+	cout << find(skip, 22) << endl;
+	cout << find(skip, 6) << endl;
 
 	system("pause");
 	return 0;
