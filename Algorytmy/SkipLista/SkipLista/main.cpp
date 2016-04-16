@@ -45,7 +45,7 @@ SLNode * newNode(int key) {
 	return tmp;
 }
 
-// sprawdza czy istnieje element o kluczu key, jeœli nie zwraca -1, wpp zwraca klucz
+// sprawdza czy istnieje element o kluczu key, jeœli nie, zwraca -1, wpp zwraca klucz
 // normalnie funkcja powinna zwracaæ wskaŸnik na wêze³
 int find(SkipList * skip, int key) {
 	SLNode * it = skip->head;
@@ -103,10 +103,9 @@ void deleteNode(SkipList * skip, int key) {
 		return;
 
 	SLNode * tmp = fix[0]->next[0];
-	for (int i = 0; i < skip->height; i++) {
+	for (int i = 0; i < skip->height; i++)
 		if (fix[i]->next[i] != NULL && fix[i]->next[i]->val == key)		
 			fix[i]->next[i] = fix[i]->next[i]->next[i];
-	}
 
 	while (skip->height > 0) {
 		if (skip->head->next[skip->height - 1] != NULL)
