@@ -43,9 +43,17 @@ bool insert(Data * arr[], Data * data) {
 }
 
 int cmp(Data * data1, Data * data2) {
-	return (int) (data1->firstName == data2->firstName && 
-				  data1->lastName == data2->lastName && 
-				  data1->age == data2->age);
+	int i = 0;
+	while (data1->firstName[i] != 0 || data2->firstName[i] != 0) {
+		if (data1->firstName[i] != data2->firstName[i]) return 0;
+		i++;
+	}
+	i = 0;
+	while (data1->lastName[i] != 0 || data2->lastName[i] != 0) {
+		if (data1->lastName[i] != data2->lastName[i]) return 0;
+		i++;
+	}
+	return (int) (data1->age == data2->age);
 }
 
 int search(Data * arr[], Data * el) {
@@ -77,13 +85,16 @@ int main() {
 	Data * a = new Data{ "Damian" , "Robins", 21 };
 	Data * b = new Data{ "Lola" , "Dekl", 22 };
 	Data * c = new Data{ "Marek" , "Holas", 33 };
-	Data * d = new Data{ "Rob" , "Holas", 43 };
 	insert(arr, a);
 	insert(arr, b);
 	insert(arr, c);
 
+	Data * d = new Data{ "Rob" , "Holas", 43 };
 	cout << search(arr, b) << endl;
 	cout << search(arr, d) << endl;
+
+	Data * e = new Data{ "Damia" , "Robins", 21 };
+	cout << cmp(a, e) << endl;
 
 	show(arr);
 
