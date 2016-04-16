@@ -16,6 +16,7 @@ Sortowiania / Sorting
 Struktury danych / Data structures
 * *drzewoBinarne* (Binary tree)
 * *drzewoBST* (BST tree)
+* *SkipLista* (Skip list)
 * *HashTable*
 
 
