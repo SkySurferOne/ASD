@@ -7,7 +7,7 @@ Różne implementacje zadań z ćwiczeń / Miscellaneous implementations from le
 Algorytmy / Algorithms
 -----------
 
-Sortowiania / Sorting
+Sortowania / Sorting
 * *Sortowanie_przez_scalanie* (merge sort)
 * *HeapSort*
 * *Quick_sort*
