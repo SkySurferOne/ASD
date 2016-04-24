@@ -18,5 +18,5 @@ Struktury danych / Data structures
 * *drzewoBST* (BST tree)
 * *SkipLista* (Skip list)
 * *HashTable*
-
+* *ZbioryRozlaczne* (disjoint sets)
 
