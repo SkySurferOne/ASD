@@ -5,7 +5,7 @@ struct BSTNode {
 	BSTNode * up;
 	BSTNode * left;
 	BSTNode * right;
-	int key;
+	int key, sum;
 };
 
 // wyœwietla drzewo (niemalej¹co wg wartoœci key)
@@ -117,7 +117,7 @@ BSTNode * treePredecessor(BSTNode * v) {
 }
 
 // usuwa wêze³ poczym go zwraca
-BSTNode * deleteNode(BSTNode * root, BSTNode * z) {
+BSTNode * deleteNode(BSTNode * &root, BSTNode * z) {
 	BSTNode * y, * x;
 	if (z->left == NULL || z->right == NULL)
 		y = z;
@@ -143,6 +143,25 @@ BSTNode * deleteNode(BSTNode * root, BSTNode * z) {
 		z->key = y->key;
 
 	return y;
+}
+
+// do naprawy
+int getNElement(BSTNode * v, int i) {
+	if (v == NULL) return -1;
+	
+	int lsum;
+	if (v->left == NULL)
+		lsum = 0;
+	else
+		lsum = v->left->sum;
+	
+	if (lsum + 1 == i) 
+		return v->key;
+	
+	if (lsum >= i)
+		return getNElement(v->left, i);
+
+	return getNElement(v->right, i - lsum - 1);
 }
 
 int main() {
