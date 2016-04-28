@@ -10,6 +10,7 @@ struct Data {
 	int age;
 	hashType hash;
 };
+Data * EMPTY = new Data{" ", " ", -1, 0};
 
 hashType getHash(Data * data) {
 	int waga = 65599, sum = 0;
@@ -24,7 +25,7 @@ bool insert(Data * arr[], Data * data) {
 	hashType h = getHash(data);
 	hashType start = h % M;
 
-	if (arr[start] == NULL) {
+	if (arr[start] == NULL || arr[start] == EMPTY) {
 		data->hash = h;
 		arr[start] = data;
 		return true;
@@ -32,7 +33,7 @@ bool insert(Data * arr[], Data * data) {
 
 	int i = start + 1;
 	while (i != M) {
-		if (arr[i] == NULL) {
+		if (arr[i] == NULL || arr[start] == EMPTY) {
 			data->hash = h;
 			arr[i] = data;
 			return true;
@@ -68,12 +69,20 @@ int search(Data * arr[], Data * el) {
 	return -1;
 }
 
+void remove(Data * arr[], Data * el) {
+	int ind = search(arr, el);
+	if (ind == -1) return;
+	Data * tmp = arr[ind];
+	delete tmp;
+	arr[ind] = EMPTY;
+}
+
 void show(Data * arr[]) {
 	for (int i = 0; i < M; i++) {
-		if (arr[i] != NULL) {
+		if (arr[i] != NULL && arr[i] != EMPTY) {
 			cout << arr[i]->firstName << " " << arr[i]->lastName << endl;
-			cout << arr[i]->age << endl;
-			cout << arr[i]->hash << endl;
+			cout << "age: " << arr[i]->age << endl;
+			cout << "hash: "<< arr[i]->hash << endl;
 		}
 	}
 }
@@ -96,7 +105,25 @@ int main() {
 	Data * e = new Data{ "Damia" , "Robins", 21 };
 	cout << cmp(a, e) << endl;
 
+	cout << endl;
 	show(arr);
+	cout << endl;
+
+	remove(arr, b);
+	insert(arr, e);
+	cout << search(arr, e) << endl;
+	b = new Data{ "Lola" , "Dekl", 22 };
+	cout << search(arr, b) << endl;
+
+	cout << endl;
+	show(arr);
+	cout << endl;
+
+	insert(arr, b);
+
+	cout << endl;
+	show(arr);
+	
 
 	system("pause");
 	return 0;
