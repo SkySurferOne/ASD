@@ -5,7 +5,8 @@ struct BSTNode {
 	BSTNode * up;
 	BSTNode * left;
 	BSTNode * right;
-	int key, sum;
+	int key, 
+		sum; // suma wêz³ów w lewym poddrzewie
 };
 
 // wyœwietla drzewo (niemalej¹co wg wartoœci key)
@@ -26,16 +27,19 @@ bool addNode(BSTNode * &tree, int key) {
 		tree->left = NULL;
 		tree->right = NULL;
 		tree->up = NULL;
+		tree->sum = 0;
 		return true;
 	} else {
 		bool run = true;
 		BSTNode * cp = tree;
 		while (run) {
 			if (key <= cp->key) {
-				if (cp->left == NULL) 
+				cp->sum++;
+				if (cp->left == NULL) {
 					run = false;
-				else
+				} else {
 					cp = cp->left;
+				}
 			} else {
 				if (cp->right == NULL) 
 					run = false;
@@ -48,6 +52,7 @@ bool addNode(BSTNode * &tree, int key) {
 		tmp->key = key;
 		tmp->up = cp;
 		tmp->left = tmp->right = NULL;
+		tmp->sum = 0;
 		if (key <= cp->key)
 			cp->left = tmp;
 		else 
@@ -116,7 +121,7 @@ BSTNode * treePredecessor(BSTNode * v) {
 	return y;
 }
 
-// usuwa wêze³ poczym go zwraca
+// usuwa wêze³ poczym go zwraca (uwaga nie naprawia sum)
 BSTNode * deleteNode(BSTNode * &root, BSTNode * z) {
 	BSTNode * y, * x;
 	if (z->left == NULL || z->right == NULL)
@@ -145,7 +150,7 @@ BSTNode * deleteNode(BSTNode * &root, BSTNode * z) {
 	return y;
 }
 
-// do naprawy
+// operacja deleteNode mo¿e zepsuæ dzia³anie tej funkcji
 int getNElement(BSTNode * v, int i) {
 	if (v == NULL) return -1;
 	
@@ -153,7 +158,7 @@ int getNElement(BSTNode * v, int i) {
 	if (v->left == NULL)
 		lsum = 0;
 	else
-		lsum = v->left->sum;
+		lsum = v->sum;
 	
 	if (lsum + 1 == i) 
 		return v->key;
@@ -176,11 +181,16 @@ int main() {
 	addNode(tree, 20);
 
 	inorder(tree);
+	cout << getNElement(tree, 2) << endl;
+
 	cout << endl;
+
 	BSTNode * d = treePredecessor(isNode(tree, 11));
 	deleteNode(tree, d);
 	inorder(tree);
 	cout << endl;
+
+	
 
 	system("pause");
 	return 0;
