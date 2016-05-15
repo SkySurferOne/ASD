@@ -20,3 +20,7 @@ Struktury danych / Data structures
 * *HashTable*
 * *ZbioryRozlaczne* (disjoint sets)
 
+Algorytmy grafowe / Graphs
+* *BFS*
+* *DFS*
+
