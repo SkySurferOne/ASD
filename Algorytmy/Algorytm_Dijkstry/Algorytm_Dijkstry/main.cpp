@@ -38,6 +38,13 @@ void show(int * tab, int length) {
 	cout << endl;
 }
 
+void showShortestPath(int * parents, int length, int dest) {
+	if (dest != -1 && length-1 >= 0) {
+		showShortestPath(parents, length-1, parents[dest]);
+		cout << dest << endl;
+	}
+}
+
 template <size_t size>
 void pathProcess(int(&g)[size][size], int v) {
 	for (int i = 0; i < size; i++) {
@@ -67,6 +74,7 @@ int main() {
 	pathProcess(graph, v);
 	show(d, V_SIZE);
 	show(p, V_SIZE);
+	showShortestPath(p, V_SIZE, 3);
 
 	system("pause");
 	return 0;
