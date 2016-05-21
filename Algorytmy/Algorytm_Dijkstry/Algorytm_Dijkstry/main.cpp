@@ -31,20 +31,6 @@ int getMinD() {
 	return min_v;
 }
 
-void show(int * tab, int length) {
-	for (int i = 0; i < length; i++) {
-		cout << i << ": " << tab[i] << endl;
-	}
-	cout << endl;
-}
-
-void showShortestPath(int * parents, int length, int dest) {
-	if (dest != -1 && length-1 >= 0) {
-		showShortestPath(parents, length-1, parents[dest]);
-		cout << dest << endl;
-	}
-}
-
 template <size_t size>
 void pathProcess(int(&g)[size][size], int v) {
 	for (int i = 0; i < size; i++) {
@@ -66,6 +52,20 @@ void pathProcess(int(&g)[size][size], int v) {
 		}
 		visited[u] = true;
 		num_vis++;
+	}
+}
+
+void show(int * tab, int length) {
+	for (int i = 0; i < length; i++) {
+		cout << i << ": " << tab[i] << endl;
+	}
+	cout << endl;
+}
+
+void showShortestPath(int * parents, int length, int dest) {
+	if (dest != -1 && length - 1 >= 0) {
+		showShortestPath(parents, length - 1, parents[dest]);
+		cout << dest << endl;
 	}
 }
 
