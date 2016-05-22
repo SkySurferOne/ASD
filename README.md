@@ -23,4 +23,6 @@ Struktury danych / Data structures
 Algorytmy grafowe / Graphs
 * *BFS*
 * *DFS*
+* *Algorytm_Dijkstry* (Dijkstra's algorithm)
+* *Algorytm_Kruskala* (Kruskal's Algorithm)
 
