@@ -69,6 +69,8 @@ void showShortestPath(int * parents, int length, int dest) {
 	}
 }
 
+// reprezentacja macierzowa 
+
 int main() {
 	int v = 0;
 	pathProcess(graph, v);

@@ -58,7 +58,7 @@ void showQueue(priority_queue<edge, vector< edge >, compareWeights> queue) {
 
 void show(int * tab, int n) {
 	for (int i = 0; i < n; i++)
-		cout << i << ": "<< tab[i] << endl;
+		cout << i << ": " << tab[i] << endl;
 	cout << endl;
 }
 
