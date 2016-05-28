@@ -24,5 +24,7 @@ Algorytmy grafowe / Graphs
 * *BFS*
 * *DFS*
 * *Algorytm_Dijkstry* (Dijkstra's algorithm)
+* *Algorytm_Bellmana_Forda* (Bellman-Ford algorithm)
 * *Algorytm_Kruskala* (Kruskal's Algorithm)
+* *Algorytm_Prima* (Prim's Algorithm)
 
