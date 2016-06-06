@@ -21,7 +21,7 @@ struct vertex {
 	vertex * next;
 };
 
-vertex * makeList(int n) {
+vertex * makeList() {
 	vertex * nlist, * tail; 
 	nlist = tail = new vertex;
 
@@ -46,7 +46,7 @@ void topoSort(int g[][V_SIZE]) {
 				vInd[j]++;
 
 	bool test;
-	vertex * list = makeList(V_SIZE); // z wartownikiem
+	vertex * list = makeList(); // z wartownikiem
 	vertex * p;
 	do {
 		test = false;
