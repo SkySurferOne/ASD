@@ -31,3 +31,4 @@ Algorytmy grafowe / Graphs
 
 Programowanie dynamiczne / Dynamic programming
 * *NajdluzszyRosnacyPodciag_LIS* (Longest increasing subsequence)
+* *problemPlecakowy* (Knapsack Problem)

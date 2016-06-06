@@ -26,14 +26,14 @@ vertex * makeTable(int g[][V_SIZE]) {
 		
 		int c = 0;
 		for (int j = 0; j < V_SIZE; j++)
-			if (graph[i][j]) c++;
+			if (g[i][j]) c++;
 
 		nV[i].to = new int[c];
 		nV[i].edges = c;
 
 		int k = 0;
 		for (int j = 0; j < V_SIZE; j++)
-			if (graph[i][j]) nV[i].to[k++] = j;
+			if (g[i][j]) nV[i].to[k++] = j;
 	}
 
 	return nV;
