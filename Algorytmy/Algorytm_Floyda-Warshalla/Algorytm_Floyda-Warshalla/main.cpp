@@ -27,9 +27,9 @@ void floydWarshall(int g[][V_SIZE]) {
 		}
 	}
 			
-	for (int i = 0; i < V_SIZE; i++) {
-		for (int j = 0; j < V_SIZE; j++) {
-			for (int k = 0; k < V_SIZE; k++) {
+	for (int k = 0; k < V_SIZE; k++) {
+		for (int i = 0; i < V_SIZE; i++) {
+			for (int j = 0; j < V_SIZE; j++) {
 				if (d[i][j] > d[i][k] + d[k][j])
 					d[i][j] = d[i][k] + d[k][j];
 			}
