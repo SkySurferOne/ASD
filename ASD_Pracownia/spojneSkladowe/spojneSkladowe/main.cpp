@@ -41,7 +41,7 @@ int DFS(int g[][V_SIZE]) {
 			count++;
 		}
 	}
-		
+	
 	return count;
 }
 

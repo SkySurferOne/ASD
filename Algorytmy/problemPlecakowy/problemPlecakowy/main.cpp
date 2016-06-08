@@ -26,7 +26,7 @@ int backpack(int W[], int C[], int n, int m) {
 
 	for (int i = 1; i < n; i++) {
 		for (int j = 1; j < m; j++) {
-			if (W[i] > j)
+			if (W[i-1] > j)
 				f[i][j] = f[i - 1][j];
 			else {
 				int w = j - W[i-1];
