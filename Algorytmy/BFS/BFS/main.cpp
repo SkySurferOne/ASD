@@ -22,7 +22,7 @@ void BFS(int (&g)[size][size], int vertex, void (* action)(int)) {
 		visited[i] = false;
 		parent[i] = -1;
 	}
-	visited[vertex];
+	visited[vertex] = true;
 	Q.push(vertex);
 	action(vertex);
 

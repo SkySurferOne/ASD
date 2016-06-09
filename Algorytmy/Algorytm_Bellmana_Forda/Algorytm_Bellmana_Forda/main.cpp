@@ -23,7 +23,6 @@ bool BF(int(&g)[size][size], int s) {
 		p[i] = -1;
 	}
 	d[s] = 0;
-	int num_vis = 0;
 
 	for (int i = 0; i < size - 1; i++) {
 		bool test = true;
@@ -43,7 +42,8 @@ bool BF(int(&g)[size][size], int s) {
 
 	for (int u = 0; u < size; u++) 
 		for (int v = 0; v < size; v++) 
-			if (d[v] > d[u] + g[u][v]) return false;
+			if (g[u][v] != 0 && g[u][v] != INT16_MAX && d[v] > d[u] + g[u][v]) 
+				return false;
 		
 	return true;
 }
